@@ -18,7 +18,7 @@ const addList = async (request) => {
   const formData = await request.formData();
   const name = formData.get("name");
 
-  await taskService.create(name);
+  await listService.create(name);
 
   return redirectTo("/lists");
 };
