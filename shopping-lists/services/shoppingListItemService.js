@@ -20,12 +20,16 @@ const findCurrentShoppingListItem = async (listId) => {
   return false; */
 };
 
-const finishShoppingListItem = async (id) => {
+const findCollectedShoppingListItem = async (listId) => {
+  return await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${ listId } AND collected IS TRUE`; 
+};
+
+const collectShoppingListItem = async (id) => {
   await sql`UPDATE shopping_list_items
     SET collected = TRUE WHERE id = ${ id }`;
 };
 
-export { createShoppingListItem, findCurrentShoppingListItem, finishShoppingListItem };
+export { createShoppingListItem, findCurrentShoppingListItem, collectShoppingListItem, findCollectedShoppingListItem };
 
 
 

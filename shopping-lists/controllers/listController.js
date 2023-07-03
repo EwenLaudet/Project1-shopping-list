@@ -1,19 +1,11 @@
 import { renderFile } from "../deps.js";
 import * as listService from "../services/listService.js";
 import * as shoppingListItemService from "../services/shoppingListItemService.js";
+import * as requestUtils from "../utils/requestUtils.js";
 
 
 const responseDetails = {
   headers: { "Content-Type": "text/html;charset=UTF-8" },
-};
-
-const redirectTo = (path) => {
-  return new Response(`Redirecting to ${path}.`, {
-    status: 303,
-    headers: {
-      "Location": path,
-    },
-  });
 };
 
 const addList = async (request) => {
@@ -21,8 +13,8 @@ const addList = async (request) => {
   const name = formData.get("name");
 
   await listService.create(name);
-
-  return redirectTo("/lists");
+  
+  return requestUtils.redirectTo("/lists");
 };
 
 const viewList = async (request) => {
@@ -31,7 +23,8 @@ const viewList = async (request) => {
 
   const data = {
     list: await listService.findById(urlParts[2]),
-    items: await shoppingListItemService.findCurrentShoppingListItem(urlParts[2]),
+    current_items: await shoppingListItemService.findCurrentShoppingListItem(urlParts[2]),
+    collected_items: await shoppingListItemService.findCollectedShoppingListItem(urlParts[2]),
   };
 
   return new Response(await renderFile("list.eta", data), responseDetails);

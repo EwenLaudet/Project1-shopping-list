@@ -1,13 +1,6 @@
 import * as shoppingListItemService from "../services/shoppingListItemService.js";
+import * as requestUtils from "../utils/requestUtils.js";
 
-const redirectTo = (path) => {
-  return new Response(`Redirecting to ${path}.`, {
-    status: 303,
-    headers: {
-      "Location": path,
-    },
-  });
-};
 
 const createShoppingListItem = async (request) => {
   const url = new URL(request.url);
@@ -15,10 +8,18 @@ const createShoppingListItem = async (request) => {
 
   const formData = await request.formData();
   const name = formData.get("name");
-  
+
   await shoppingListItemService.createShoppingListItem(urlParts[2], name);
 
-  return redirectTo(`/lists/${urlParts[2]}`);
+  return requestUtils.redirectTo(`/lists/${urlParts[2]}`);
 };
 
-export { createShoppingListItem };
+const collectShoppingListItem = async (request) => {
+  const url = new URL(request.url);
+  const urlParts = url.pathname.split("/");
+  await shoppingListItemService.collectShoppingListItem(urlParts[4]);
+
+  return requestUtils.redirectTo(`/lists/${urlParts[2]}`);
+};
+
+export { createShoppingListItem, collectShoppingListItem };
