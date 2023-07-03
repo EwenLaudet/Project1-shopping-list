@@ -24,7 +24,7 @@ const deactivateList = async (request) => {
   const urlParts = url.pathname.split("/");
 
   await shoppingListItemService.deleteAllItemsFromList(urlParts[2]);
-  
+
   await listService.deactivate(urlParts[2]);
   
   return requestUtils.redirectTo("/lists");

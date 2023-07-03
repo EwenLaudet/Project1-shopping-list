@@ -2,10 +2,7 @@ const { test, expect } = require("@playwright/test");
 
 test.beforeEach(async ({ page }) => {
   // Runs before each test and signs in each page.
-  await page.goto('/');
-  //await page.getByLabel('Username or email address').fill('username');
-  //await page.getByLabel('Password').fill('password');
-  //await page.getByRole('button', { name: 'Sign in' }).click();
+  await page.goto('/lists');
 });
 
 test("Page is showing with correct titles", async ({ page }) => {
@@ -85,4 +82,13 @@ test("Can delete a list with items", async ({ page }) => {
   await page.goto('/lists');
   await page.getByText(listName).click();
   await expect(page.locator(`li >> text='${listName}'`)).toHaveCount(0);
+});
+
+test("Home page is showing statistics when shopping lists have been created", async ({ page }) => {
+  const listName = `My list: ${Math.random()}`;
+  await page.locator("input[type=text]").type(listName);
+  await page.getByRole('button', { name: 'Create list!' }).click();
+
+  await page.goto('/');
+  await expect(page.locator(`body > p `)).toHaveCount(2);
 });

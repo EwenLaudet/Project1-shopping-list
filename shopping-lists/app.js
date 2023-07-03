@@ -2,8 +2,7 @@ import { serve } from "./deps.js";
 import { configure } from "./deps.js";
 import * as listController from "./controllers/listController.js";
 import * as shoppingListItemController from "./controllers/shoppingListItemController.js";
-import * as requestUtils from "./utils/requestUtils.js";
-
+import * as statisticsController from "./controllers/statisticsController.js";
 
 configure({
   views: `${Deno.cwd()}/views/`,
@@ -13,7 +12,7 @@ const handleRequest = async (request) => {
   const url = new URL(request.url);
 
   if (url.pathname === "/" && request.method === "GET") {
-    return requestUtils.redirectTo("/lists");
+    return await statisticsController.viewHome(request);
   } else if (url.pathname === "/lists" && request.method === "POST") {
     return await listController.addList(request);
   } else if (url.pathname === "/lists" && request.method === "GET") {
@@ -32,6 +31,3 @@ const handleRequest = async (request) => {
 };
 
 serve(handleRequest, { port: 7777 });
-
-
-

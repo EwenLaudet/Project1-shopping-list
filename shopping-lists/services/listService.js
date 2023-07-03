@@ -22,4 +22,9 @@ const findById = async (id) => {
   return { id: 0, name: "Unknown" };
 };
 
-export { create, deactivate, findAllActiveLists, findById };
+const numberLists = async () => {
+  const rows = await sql`SELECT COUNT(*) as count_lists FROM shopping_lists `;
+  return rows[0].count_lists;
+};
+
+export { create, deactivate, findAllActiveLists, findById, numberLists };
