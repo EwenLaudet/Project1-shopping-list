@@ -6,6 +6,14 @@ const createShoppingListItem = async (shopping_list_id, name) => {
     VALUES (${ shopping_list_id }, ${ name })`;
 };
 
+//const deleteAllItemsFromList = async (shopping_list_id) => {
+//  await sql`DELETE FROM shopping_list_items WHERE shopping_list_id = ${ shopping_list_id }`;
+//};
+
+const deleteAllItemsFromList = async (shopping_list_id) => {
+  await sql`DELETE FROM shopping_list_items WHERE shopping_list_id = ${ shopping_list_id }`;
+};
+
 const findCurrentShoppingListItem = async (listId) => {
   return await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${ listId } AND collected IS FALSE`; // WHERE shopping_list_id = ${ itemId } 
 
@@ -29,7 +37,7 @@ const collectShoppingListItem = async (id) => {
     SET collected = TRUE WHERE id = ${ id }`;
 };
 
-export { createShoppingListItem, findCurrentShoppingListItem, collectShoppingListItem, findCollectedShoppingListItem };
+export { createShoppingListItem, deleteAllItemsFromList, findCurrentShoppingListItem, collectShoppingListItem, findCollectedShoppingListItem };
 
 
 

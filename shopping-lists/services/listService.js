@@ -4,6 +4,10 @@ const create = async (name) => {
   await sql`INSERT INTO shopping_lists (name) VALUES (${ name })`;
 };
 
+const deactivate = async (idList) => {
+  await sql`UPDATE shopping_lists SET active = FALSE WHERE id = ${ idList }`;
+};
+
 const findAllActiveLists = async () => {
   return await sql`SELECT * FROM shopping_lists WHERE active = true`;
 };
@@ -18,4 +22,4 @@ const findById = async (id) => {
   return { id: 0, name: "Unknown" };
 };
 
-export { create, findAllActiveLists, findById };
+export { create, deactivate, findAllActiveLists, findById };

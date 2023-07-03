@@ -17,6 +17,19 @@ const addList = async (request) => {
   return requestUtils.redirectTo("/lists");
 };
 
+const deactivateList = async (request) => {
+  const formData = await request.formData();
+
+  const url = new URL(request.url);
+  const urlParts = url.pathname.split("/");
+
+  await shoppingListItemService.deleteAllItemsFromList(urlParts[2]);
+  
+  await listService.deactivate(urlParts[2]);
+  
+  return requestUtils.redirectTo("/lists");
+};
+
 const viewList = async (request) => {
   const url = new URL(request.url);
   const urlParts = url.pathname.split("/");
@@ -38,4 +51,4 @@ const viewLists = async (request) => {
   return new Response(await renderFile("lists.eta", data), responseDetails);
 };
 
-export { addList, viewLists, viewList };
+export { addList, deactivateList, viewLists, viewList };
