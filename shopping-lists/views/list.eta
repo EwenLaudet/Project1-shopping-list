@@ -1,3 +1,6 @@
+<% layout("./layouts/layout.eta") %>
+
+
 <h1><%= it.list.name %></h1>
 
 <form method="POST" action="/lists/<%= it.list.id %>/items">
@@ -21,7 +24,7 @@
       <del><%= item.name %></del>
     </li>
   <% }); %>
-  
+
 </ul>
 
 <a href="/lists">Shopping lists</a>
