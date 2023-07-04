@@ -2,56 +2,56 @@
 
 This project is a web application that is used as a shared shopping list.
 
-Address link : https://...
+Address link : <https://shopping-lists-nantes.fly.dev/>
 
 ## Architecture and description
 
 The application follows a three-tier architecture consisting of a client, server, and database. It also utilizes a layered architecture with four layers: views, controllers, services, and the database.
 
-C:.
-│   docker-compose.yml
-│   project.env
-│   README.md
-│
-├───e2e-playwright
-│   │   Dockerfile
-│   │   package.json
-│   │   playwright.config.js
-│   │
-│   └───tests
-│           hello-world.spec.js
-│
-├───flyway
-│   └───sql
-│           V1___initial_schema.sql
-│
-└───shopping-lists
-    │   app.js
-    │   deps.js
-    │   Dockerfile
-    │
-    ├───controllers
-    │       listController.js
-    │       shoppingListItemController.js
-    │       statisticsController.js
-    │
-    ├───database
-    │       database.js
-    │
-    ├───services
-    │       listService.js
-    │       shoppingListItemService.js
-    │
-    ├───utils
-    │       requestUtils.js
-    │
-    └───views
-        │   home.eta
-        │   list.eta
-        │   lists.eta
+        C:.
+        │   docker-compose.yml
+        │   project.env
+        │   README.md
         │
-        └───layouts
-                layout.eta
+        ├───e2e-playwright
+        │   │   Dockerfile
+        │   │   package.json
+        │   │   playwright.config.js
+        │   │
+        │   └───tests
+        │           hello-world.spec.js
+        │
+        ├───flyway
+        │   └───sql
+        │           V1___initial_schema.sql
+        │
+        └───shopping-lists
+            │   app.js
+            │   deps.js
+            │   Dockerfile
+            │
+            ├───controllers
+            │       listController.js
+            │       shoppingListItemController.js
+            │       statisticsController.js
+            │
+            ├───database
+            │       database.js
+            │
+            ├───services
+            │       listService.js
+            │       shoppingListItemService.js
+            │
+            ├───utils
+            │       requestUtils.js
+            │
+            └───views
+                │   home.eta
+                │   list.eta
+                │   lists.eta
+                │
+                └───layouts
+                        layout.eta
 
 ### The client-side
 
