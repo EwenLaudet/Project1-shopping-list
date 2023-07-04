@@ -90,5 +90,5 @@ test("Home page is showing statistics when shopping lists have been created", as
   await page.getByRole('button', { name: 'Create list!' }).click();
 
   await page.goto('/');
-  await expect(page.locator(`body > p `)).toHaveCount(2);
+  await expect(page.locator(`p `)).toHaveCount(2);
 });
