@@ -10,7 +10,6 @@ The application follows a three-tier architecture consisting of a client, server
 
         C:.
         │   docker-compose.yml
-        │   project.env
         │   README.md
         │
         ├───e2e-playwright
@@ -55,25 +54,25 @@ The application follows a three-tier architecture consisting of a client, server
 
 ### The client-side
 
-The client-side views are stored in the views folder and include the following files:
+<p>The client-side views are stored in the views folder and include the following files:</p>
 
-home.eta: main page with the application statistics.
-lists.eta: page managing all the shopping lists.
-list.eta: the list page managing list items.
+<p>'home.eta': main page with the application statistics.<br>
+'lists.eta': page managing all the shopping lists.<br>
+'list.eta': the list page managing list items.</p>
 
-The pages uses the same layout in "layouts/layout.eta". The layout is using the CDN bootstrap.
+<p>The pages uses the same layout in "layouts/layout.eta". The layout is using the CDN bootstrap.</p>
 
 ### The server-side
 
 There is a controller for each page:
 
-listController.js
-shoppingListItemController.js
+listController.js<br>
+shoppingListItemController.js<br>
 statisticsController.js
 
 The controllers are requesting services for lists or items from the shopping lists while the services are querying to the database:
 
-listService.js
+listService.js<br>
 shoppingListItemService.js
 
 ### The database
@@ -82,27 +81,28 @@ The application uses a postgresql database version 14.1. The initial schemas are
 
 ### The tests
 
-There is currently 8 tests for the application and use playwright.
-  ✓  1  Page is showing with correct titles (417ms)
-  ✓  2 Can create a list (404ms)
-  ✓  3 Show a newly created list (446ms)
-  ✓  4 Can create an item in a list (551ms)
-  ✓  5 Can collect an item (632ms)
-  ✓  6 Can delete an empty list (564ms)
-  ✓  7 Can delete a list with items (764ms)
-  ✓  8 Home page is showing statistics when shopping lists have been created (403ms)
+There is currently 8 tests for the application and use playwright.<br>
+  ✓  1  Page is showing with correct titles (417ms)<br>
+  ✓  2 Can create a list (404ms)<br>
+  ✓  3 Show a newly created list (446ms)<br>
+  ✓  4 Can create an item in a list (551ms)<br>
+  ✓  5 Can collect an item (632ms)<br>
+  ✓  6 Can delete an empty list (564ms)<br>
+  ✓  7 Can delete a list with items (764ms)<br>
+  ✓  8 Home page is showing statistics when shopping lists have been created (403ms)<br>
 
 ## Deployed location
 
+Deployed on fly.io. Using the free plan. The application is deployed from a docker container and a postgresql has been created and connected to that application.
 
 ## Guidelines to run the application locally
 
-1) Clone this repository.
+1) Unzip the code.
 
-2) Go in the Project1-shopping-list directory.
+2) Go in the `/Project1-shopping-list` directory.
 
-3) Run:
-docker-compose up
+3) Run:<br>
+`docker-compose up`
 
-To run the playwright tests and remove the data in the database if success run this command:
-docker-compose run --entrypoint=npx e2e-playwright playwright test && docker-compose rm -sf
+To run the playwright tests and remove the data in the database if success run this command:<br>
+`docker-compose run --entrypoint=npx e2e-playwright playwright test && docker-compose rm -sf`
